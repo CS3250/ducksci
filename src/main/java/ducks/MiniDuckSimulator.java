@@ -1,4 +1,5 @@
-class MiniDuckSimulator {
+/* Some more documentation */
+
 
   public static void main(String args[]) {
 
