@@ -1,4 +1,4 @@
-name: Gradle Build
+name: build
 on: pull_request
 jobs:
   gradle:
@@ -13,10 +13,10 @@ jobs:
         distribution: temurin
         java-version: 11
         
-    - name: Setup Gradle
+    - name: Set up Gradle
       uses: gradle/gradle-build-action@v2
     
-    - name: Gradle Compile
+    - name: Gradle compile
       run: ./gradlew compileJava
 
     - name: Gradle test
