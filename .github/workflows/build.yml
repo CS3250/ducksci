@@ -28,12 +28,13 @@ jobs:
     - name: Gradle code coverage
       run: ./gradlew codeCoverageReport
 
-    - name: Gradle code coverage
+    - name: Gradle xml report
       run: ./gradlew jacocoTestReport
 
     - name: Upload coverage
       uses: codecov/codecov-action@v2
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         directory: ./build/reports/
         env_vars: OS
         fail_ci_if_error: true
