@@ -35,7 +35,7 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./build/reports/
+        directory: ./build/reports/jacoco/test/
         env_vars: OS
         fail_ci_if_error: true
         files: ./build/reports/jacoco/report.xml
