@@ -16,8 +16,29 @@ jobs:
     - name: Set up Gradle
       uses: gradle/gradle-build-action@v2
     
-    - name: Gradle compile
-      run: ./gradlew compileJava
+    - name: Gradle check
+      run: ./gradlew check
+
+    - name: Gradle build
+      run: ./gradlew build --scan -s
 
     - name: Gradle test
       run: ./gradlew test
+
+    - name: Gradle code coverage
+      run: ./gradlew codeCoverageReport
+
+    - name: Gradle code coverage
+      run: ./gradlew jacocoTestReport
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v2
+      with:
+        directory: ./build/reports/
+        env_vars: OS
+        fail_ci_if_error: true
+        files: ./jacoco/report.xml
+        flags: unittests
+        name: codecov-umbrella
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true

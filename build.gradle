@@ -12,6 +12,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+
+    // For code coverage
+    id 'jacoco'
 }
 
 repositories {
@@ -19,6 +22,13 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 
+}
+
+if (hasProperty('buildScan')) {
+  buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+  }
 }
 
 dependencies {
@@ -41,4 +51,17 @@ application {
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
+}
+
+task codeCoverageReport(type: JacocoReport) {
+  executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+  sourceSets sourceSets.main
+
+  reports {
+      xml.enabled true
+      xml.destination file("${buildDir}/reports/jacoco/report.xml")
+      html.enabled false
+      csv.enabled false
+  }
 }
