@@ -1,5 +1,3 @@
-/* Some helpful documentation */
-
 class MiniDuckSimulator {
 
   public static void main(String args[]) {
